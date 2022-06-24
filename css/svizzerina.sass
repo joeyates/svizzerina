@@ -1,0 +1,123 @@
+@use "sass:math"
+
+$hamburger-inclined-glyph-angle: 45deg
+$sin-45deg: 0.7071
+$navigation-height: 60px
+$hamburger-margin: 15px
+$hamburger-width: 32px
+$hamburger-height: 20px
+
+// $navigation-z-index should probably be determined by the user
+$navigation-z-index: 1
+$hamburger-z-index: 1
+$trigger-z-index: 2
+
+$menu-width: 160px
+$menu-padding-left: 30px
+$menu-padding-right: 10px
+$menu-border-left-width: 1px
+
+$hamburger-left: $hamburger-width + $hamburger-margin
+$menu-translation-x: $hamburger-left - $menu-width
+$hidden-menu-translation-y: -100%
+$showing-menu-translation-y: 0
+$showing-menu-x: -$hamburger-margin
+
+$glyph-height: 4px
+$glyph-border-radius: math.div($glyph-height, 2)
+$glyph2-top: math.div($hamburger-height - $glyph-height, 2)
+$glyph3-top: $hamburger-height - $glyph-height
+$glyph-inclined-length: math.div($hamburger-height, $sin-45deg) - $glyph-height
+$glyph-inclined-scaling: math.div($glyph-inclined-length, $hamburger-width)
+$glyph-inclined-width: $hamburger-height
+$glyph-inclined-offset: $glyph-height * $sin-45deg + math.div($hamburger-width - $glyph-inclined-width, 2)
+
+$menu-link-color: #232323
+
+.navigation
+  position: absolute
+  top: 0
+  width: 100%
+  height: $navigation-height
+  scrollbar-width: none
+  scrollbar-height: none
+  z-index: $navigation-z-index
+
+.hamburger
+  position: absolute
+  top: 0
+  right: 0
+  margin: $hamburger-margin
+  width: $hamburger-width
+  height: $hamburger-height
+  z-index: $hamburger-z-index
+
+.hamburger__trigger
+  opacity: 0
+  position: absolute
+  top: 0
+  right: 0
+  cursor: pointer
+  width: $hamburger-width
+  height: $hamburger-height
+  z-index: $trigger-z-index
+
+.hamburger__glyph
+  position: absolute
+  width: $hamburger-width
+  height: $glyph-height
+  border-radius: $glyph-border-radius
+  transform: none
+  transition: transform 0.5s, opacity 0.4s ease
+  z-index: $hamburger-z-index
+  background: #333
+
+.hamburger__glyph1
+  top: 0
+  transform-origin: 0 0
+
+.hamburger__trigger:checked ~ .hamburger__glyph1
+  transform: translate($glyph-inclined-offset, 0) rotate($hamburger-inclined-glyph-angle) scaleX($glyph-inclined-scaling)
+
+.hamburger__glyph2
+  opacity: 1
+  top: $glyph2-top
+
+.hamburger__trigger:checked ~ .hamburger__glyph2
+  opacity: 0
+
+.hamburger__glyph3
+  top: $glyph3-top
+  transform-origin: 0 $glyph-height
+
+.hamburger__trigger:checked ~ .hamburger__glyph3
+  transform:  translate($glyph-inclined-offset, 0) rotate(-$hamburger-inclined-glyph-angle) scaleX($glyph-inclined-scaling)
+
+.hamburger__menu
+  position: absolute
+  top: $showing-menu-x
+  width: $menu-width
+  padding: 50px $menu-padding-right 20px $menu-padding-left
+  border: 0 solid #888
+  border-bottom-width: 1px
+  border-left-width: $menu-border-left-width
+  border-radius: 0 0 0 .4rem
+  list-style-type: none
+  transform: translate($menu-translation-x, $hidden-menu-translation-y)
+  transition: transform 0.5s ease
+  background-color: white
+
+.hamburger__trigger:checked ~ .hamburger__menu
+  transform: translate($menu-translation-x, $showing-menu-translation-y)
+
+.hamburger__menu a
+  text-decoration: none
+  color: #555
+  transition: color 0.3s ease
+
+.hamburger__menu a:hover
+  color: black
+
+.hamburger__menu-item
+  padding: 5px 0
+  font-size: 22px
