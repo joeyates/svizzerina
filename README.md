@@ -6,7 +6,7 @@ A CSS-only hamburger menu.
 
 # Usage
 
-Add this HTML to your page:
+Include `dist/index.css` in your build, then add this HTML to your page:
 
 ```html
 <nav class="svizzerina">
@@ -55,10 +55,18 @@ initialize(el);
 
 # Configuration
 
-## Position
+Some configuration is available by setting CSS vars, e.g.:
 
-By default it is assumed that the menu will be on the **left**
-and open to the **right**.
+```css
+:root {
+  --svizzerina-menu-width: 100px;
+}
+```
 
-If you wish to place it on the right and have it open to the left,
-...TODO!!!!!!!!!!!!!!!!!
+Vars which can be set are:
+
+* `--svizzerina-link-color` - default: #555,
+* `--svizzerina-link-hover-color` - default: black,
+* `--svizzerina-menu-width` - default: 160px,
+* `--svizzerina-menu-color` - default: white,
+* `--svizzerina-menu-z-index` - default: 1.
