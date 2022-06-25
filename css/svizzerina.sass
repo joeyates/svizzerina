@@ -1,36 +1,38 @@
-@use "sass:math"
-
-$svizzerina-z-index: var(--svizzerina-z-index, 1)
+$svizzerina-glyph-top: var(--svizzerina-glyph-top, 4px)
+$svizzerina-link-color: var(--svizzerina-link-color, #555)
+$svizzerina-link-hover-color: var(--svizzerina-link-hover-color, black)
+$svizzerina-menu-color: var(--svizzerina-menu-color, white)
+$svizzerina-menu-font-size: var(--svizzerina-menu-font-size, 1rem)
 $svizzerina-menu-width: var(--svizzerina-menu-width, 160px)
+$svizzerina-z-index: var(--svizzerina-z-index, 1)
 
 $inclined-glyph-angle: 45deg
 $sin-45deg: 0.7071
 $svizzerina-margin: 0px
-$svizzerina-width: 32px
 $svizzerina-height: 20px
+$svizzerina-width: 32px
 
 $menu-padding-left: 30px
 $menu-padding-right: 10px
 $menu-border-left-width: 1px
 
-$svizzerina-left: $svizzerina-width + $svizzerina-margin
-$menu-translation-x: $svizzerina-left - $svizzerina-menu-width
+$svizzerina-left: calc($svizzerina-width + $svizzerina-margin)
+$menu-translation-x: calc($svizzerina-left - $svizzerina-menu-width)
 $hidden-menu-translation-y: -100%
 $showing-menu-translation-y: 0
 $showing-menu-x: -$svizzerina-margin
 
 $glyph-height: 4px
-$glyph-border-radius: math.div($glyph-height, 2)
-$glyph1-top: 4px
-$glyph2-top: $glyph1-top + math.div($svizzerina-height - $glyph-height, 2)
-$glyph3-top: $glyph1-top + $svizzerina-height - $glyph-height
+$glyph-border-radius: calc($glyph-height / 2)
+$glyph1-top: $svizzerina-glyph-top
+$glyph2-top: calc($glyph1-top + ($svizzerina-height - $glyph-height) / 2)
+$glyph3-top: calc($glyph1-top + $svizzerina-height - $glyph-height)
 $glyph-right: 4px
-$glyph-inclined-length: math.div($svizzerina-height, $sin-45deg) - $glyph-height
-$glyph-inclined-scaling: math.div($glyph-inclined-length, $svizzerina-width)
+$glyph-inclined-length: calc($svizzerina-height / $sin-45deg - $glyph-height)
+$glyph-inclined-scaling: calc($glyph-inclined-length / $svizzerina-width)
 $glyph-inclined-width: $svizzerina-height
-$glyph-inclined-offset: $glyph-height * $sin-45deg + math.div($svizzerina-width - $glyph-inclined-width, 2)
-
-$menu-link-color: #232323
+$glyph-width-difference: calc($svizzerina-width - $glyph-inclined-width)
+$glyph-inclined-offset: calc($glyph-height * $sin-45deg + $glyph-width-difference / 2)
 
 .svizzerina
   position: absolute
@@ -58,7 +60,6 @@ $menu-link-color: #232323
     width: $svizzerina-width
     height: $glyph-height
     border-radius: $glyph-border-radius
-    transform: none
     transition: transform 0.5s, opacity 0.4s ease
     background: #333
     z-index: 2
@@ -98,7 +99,7 @@ $menu-link-color: #232323
     list-style-type: none
     transform: translate(0, $hidden-menu-translation-y)
     transition: transform 0.5s ease
-    background-color: var(--svizzerina-menu-color, white)
+    background-color: $svizzerina-menu-color
     z-index: 1
 
   .svizzerina__trigger:checked ~ .svizzerina__menu
@@ -106,12 +107,10 @@ $menu-link-color: #232323
 
   .svizzerina__menu a
     text-decoration: none
-    color: var(--svizzerina-link-color, #555)
+    color: $svizzerina-link-color
     transition: color 0.3s ease
+    font-size: $svizzerina-menu-font-size
+    padding: 5px 0
 
   .svizzerina__menu a:hover
-    color: var(--svizzerina-link-hover-color, black)
-
-  .svizzerina__menu-item
-    padding: 5px 0
-    font-size: 22px
+    color: $svizzerina-link-hover-color

@@ -65,8 +65,10 @@ Some configuration is available by setting CSS vars, e.g.:
 
 Vars which can be set are:
 
+* `--svizzerina-glyph-top` - default: 4px,
 * `--svizzerina-link-color` - default: #555,
 * `--svizzerina-link-hover-color` - default: black,
-* `--svizzerina-menu-width` - default: 160px,
 * `--svizzerina-menu-color` - default: white,
+* `--svizzerina-menu-font-size` - default: 1rem,
+* `--svizzerina-menu-width` - default: 160px,
 * `--svizzerina-z-index` - default: 1.
