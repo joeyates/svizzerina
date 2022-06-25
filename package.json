@@ -15,4 +15,7 @@
   "type": "module",
   "main": "dist/index.js",
   "repository": "https://gitlab.com/joeyates/svizzerina"
+  "scripts": {
+    "build": "nodejs bin/build.mjs"
+  }
 }

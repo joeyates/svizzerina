@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(''))
 
 const bundle = true
 const logLevel = process.env.ESBUILD_LOG_LEVEL || 'silent'
+const watch = !!process.env.ESBUILD_WATCH
 
 const indexJs = path.resolve(root, 'src/index.js')
 const nodeModulesPath = path.resolve(root, 'node_modules')
@@ -20,3 +21,13 @@ const promise = esbuild.build({
   outdir,
   logLevel
 })
+
+if (watch) {
+  promise.then(_result => {
+    process.stdin.on('close', () => {
+      process.exit(0)
+    })
+
+    process.stdin.resume()
+  })
+}
