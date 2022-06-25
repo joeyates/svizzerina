@@ -69,4 +69,4 @@ Vars which can be set are:
 * `--svizzerina-link-hover-color` - default: black,
 * `--svizzerina-menu-width` - default: 160px,
 * `--svizzerina-menu-color` - default: white,
-* `--svizzerina-menu-z-index` - default: 1.
+* `--svizzerina-z-index` - default: 1.

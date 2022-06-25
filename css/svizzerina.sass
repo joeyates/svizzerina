@@ -1,6 +1,6 @@
 @use "sass:math"
 
-$svizzerina-menu-z-index: var(--svizzerina-menu-z-index, 1)
+$svizzerina-z-index: var(--svizzerina-z-index, 1)
 $svizzerina-menu-width: var(--svizzerina-menu-width, 160px)
 
 $inclined-glyph-angle: 45deg
@@ -29,7 +29,6 @@ $glyph-inclined-length: math.div($svizzerina-height, $sin-45deg) - $glyph-height
 $glyph-inclined-scaling: math.div($glyph-inclined-length, $svizzerina-width)
 $glyph-inclined-width: $svizzerina-height
 $glyph-inclined-offset: $glyph-height * $sin-45deg + math.div($svizzerina-width - $glyph-inclined-width, 2)
-$glyph-z-index: $svizzerina-menu-z-index + 1
 
 $menu-link-color: #232323
 
@@ -39,6 +38,7 @@ $menu-link-color: #232323
   right: 0
   margin: $svizzerina-margin
   width: $svizzerina-width
+  z-index: $svizzerina-z-index
 
   .svizzerina__trigger
     opacity: 0
@@ -50,7 +50,7 @@ $menu-link-color: #232323
     margin: 0
     border: 0
     cursor: pointer
-    z-index: calc($svizzerina-menu-z-index + 2)
+    z-index: 3
 
   .svizzerina__glyph
     position: absolute
@@ -61,7 +61,7 @@ $menu-link-color: #232323
     transform: none
     transition: transform 0.5s, opacity 0.4s ease
     background: #333
-    z-index: calc($svizzerina-menu-z-index + 1)
+    z-index: 2
 
   .svizzerina__glyph1
     top: $glyph1-top
@@ -99,7 +99,7 @@ $menu-link-color: #232323
     transform: translate(0, $hidden-menu-translation-y)
     transition: transform 0.5s ease
     background-color: var(--svizzerina-menu-color, white)
-    z-index: $svizzerina-menu-z-index
+    z-index: 1
 
   .svizzerina__trigger:checked ~ .svizzerina__menu
     transform: translate(0, $showing-menu-translation-y)
