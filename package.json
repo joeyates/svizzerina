@@ -1,7 +1,7 @@
 {
   "name": "svizzerina",
   "description": "A CSS-only hamburger menu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "(MIT OR GPL-3.0)",
   "author": "Joe Yates <joe.g.yates@gmail.com>",
   "repository": "https://gitlab.com/joeyates/svizzerina",
