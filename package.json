@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "license": "(MIT OR GPL-3.0)",
   "author": "Joe Yates <joe.g.yates@gmail.com>",
+  "repository": "https://gitlab.com/joeyates/svizzerina",
   "devDependencies": {
     "esbuild": "^0.14.47",
     "esbuild-sass-plugin": "^2.2.6"
@@ -12,9 +13,7 @@
     "dist/index.css",
     "dist/index.js"
   ],
-  "type": "module",
   "main": "dist/index.js",
-  "repository": "https://gitlab.com/joeyates/svizzerina"
   "scripts": {
     "build": "nodejs bin/build.mjs"
   }
